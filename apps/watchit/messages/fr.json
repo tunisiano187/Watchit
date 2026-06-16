@@ -1,0 +1,72 @@
+{
+  "Nav": {
+    "dashboard": "Tableau de bord",
+    "feeds": "Flux",
+    "preferences": "Préférences",
+    "history": "Historique",
+    "settings": "Paramètres",
+    "signOut": "Se déconnecter"
+  },
+  "Landing": {
+    "title": "Watchit",
+    "subtitle": "Votre veille technologique personnalisée, livrée chaque jour.",
+    "signIn": "Se connecter"
+  },
+  "Auth": {
+    "emailLabel": "Adresse email",
+    "sendLink": "Envoyer le lien de connexion",
+    "checkInbox": "Consultez votre boîte mail pour le lien de connexion."
+  },
+  "Dashboard": {
+    "title": "Tableau de bord",
+    "noFeeds": "Vous n'avez pas encore de flux.",
+    "createFeed": "Créer votre premier flux"
+  },
+  "Feeds": {
+    "title": "Flux",
+    "newFeed": "Nouveau flux",
+    "name": "Nom",
+    "topic": "Sujet",
+    "active": "Actif",
+    "inactive": "Inactif",
+    "preview": "Aperçu des articles",
+    "create": "Créer le flux",
+    "delete": "Supprimer"
+  },
+  "Preferences": {
+    "title": "Vos préférences",
+    "description": "Les sujets sont notés de -1 (pas intéressé) à 1 (très intéressé), selon vos retours.",
+    "noData": "Pas encore de données de préférences. Interagissez avec quelques emails de veille pour commencer."
+  },
+  "History": {
+    "title": "Historique des interactions",
+    "click": "Cliqué",
+    "like": "Aimé",
+    "dislike": "Pas intéressé"
+  },
+  "Settings": {
+    "title": "Paramètres",
+    "timezone": "Fuseau horaire",
+    "digestHour": "Heure d'envoi du digest",
+    "interfaceLanguage": "Langue de l'interface",
+    "contentLanguages": "Langues des contenus",
+    "contentLanguagesHint": "N'afficher que les articles dans ces langues. Laissez vide pour inclure toutes les langues.",
+    "save": "Enregistrer"
+  },
+  "Email": {
+    "subject": "Votre veille {feedName}",
+    "intro": "Voici la sélection du jour pour \"{feedName}\" :",
+    "readMore": "Lire l'article",
+    "likeLabel": "Intéressé",
+    "dislikeLabel": "Pas intéressé"
+  },
+  "Tracking": {
+    "thanksLike": "Merci ! Nous vous en montrerons plus dans ce genre.",
+    "thanksDislike": "Compris, nous vous en montrerons moins dans ce genre.",
+    "addComment": "Vous voulez préciser ? (facultatif)",
+    "commentPlaceholder": "Qu'avez-vous aimé ou pas dans cet article ?",
+    "submit": "Envoyer",
+    "skip": "Passer",
+    "expired": "Ce lien a expiré."
+  }
+}
