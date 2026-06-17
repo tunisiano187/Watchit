@@ -5,6 +5,7 @@
     "preferences": "",
     "history": "",
     "settings": "",
+    "admin": "",
     "signOut": ""
   },
   "Landing": {
@@ -68,5 +69,31 @@
     "submit": "",
     "skip": "",
     "expired": ""
+  },
+  "Admin": {
+    "title": "",
+    "containers": "",
+    "update": "",
+    "service": "",
+    "state": "",
+    "image": "",
+    "actions": "",
+    "start": "",
+    "stop": "",
+    "restart": "",
+    "logs": "",
+    "closeLogs": "",
+    "currentVersion": "",
+    "latestVersion": "",
+    "upToDate": "",
+    "updateAvailable": "",
+    "updateNow": "",
+    "updating": "",
+    "updateSuccess": "",
+    "updateError": "",
+    "checkForUpdates": "",
+    "changelog": "",
+    "noRelease": "",
+    "accessDenied": ""
   }
 }

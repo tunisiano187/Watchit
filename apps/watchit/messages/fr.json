@@ -5,6 +5,7 @@
     "preferences": "Préférences",
     "history": "Historique",
     "settings": "Paramètres",
+    "admin": "Admin",
     "signOut": "Se déconnecter"
   },
   "Landing": {
@@ -68,5 +69,31 @@
     "submit": "Envoyer",
     "skip": "Passer",
     "expired": "Ce lien a expiré."
+  },
+  "Admin": {
+    "title": "Admin",
+    "containers": "Services",
+    "update": "Mises à jour",
+    "service": "Service",
+    "state": "État",
+    "image": "Image",
+    "actions": "Actions",
+    "start": "Démarrer",
+    "stop": "Arrêter",
+    "restart": "Redémarrer",
+    "logs": "Journaux",
+    "closeLogs": "Fermer",
+    "currentVersion": "Version actuelle",
+    "latestVersion": "Dernière version",
+    "upToDate": "À jour",
+    "updateAvailable": "Mise à jour disponible",
+    "updateNow": "Mettre à jour",
+    "updating": "Mise à jour en cours…",
+    "updateSuccess": "Mise à jour lancée — l'application va redémarrer.",
+    "updateError": "Échec de la mise à jour",
+    "checkForUpdates": "Vérifier",
+    "changelog": "Nouveautés",
+    "noRelease": "Aucune information de version disponible.",
+    "accessDenied": "Accès refusé — réservé aux administrateurs."
   }
 }

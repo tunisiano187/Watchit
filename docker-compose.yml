@@ -63,6 +63,8 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       DATABASE_URL: postgresql://watchit:${POSTGRES_PASSWORD}@postgres:5432/watchit
       REDIS_URL: redis://redis:6379
@@ -83,6 +85,9 @@ services:
       ADMIN_EMAIL: ${ADMIN_EMAIL:-}
       DEFAULT_LOCALE: ${DEFAULT_LOCALE:-en}
       SUPPORTED_LOCALES: ${SUPPORTED_LOCALES:-en,fr}
+      COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME:-watchit}
+      GITHUB_REPO: ${GITHUB_REPO:-tunisiano187/Watchit}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
     depends_on:
       postgres:
         condition: service_healthy
@@ -97,6 +102,8 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     command: ["node", "dist/workers/index.js"]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       DATABASE_URL: postgresql://watchit:${POSTGRES_PASSWORD}@postgres:5432/watchit
       REDIS_URL: redis://redis:6379
@@ -121,6 +128,22 @@ services:
         condition: service_healthy
       vane:
         condition: service_started
+
+  updater:
+    image: alpine:3.20
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .:/repo
+      - ./scripts/updater-daemon.sh:/updater-daemon.sh:ro
+    environment:
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME:-watchit}
+    entrypoint: ["/bin/sh", "-c"]
+    command: "apk add --no-cache git docker-cli redis && /bin/sh /updater-daemon.sh"
+    depends_on:
+      redis:
+        condition: service_healthy
 
 volumes:
   postgres-data:
