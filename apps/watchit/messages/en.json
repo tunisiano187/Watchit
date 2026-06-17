@@ -1,0 +1,72 @@
+{
+  "Nav": {
+    "dashboard": "Dashboard",
+    "feeds": "Feeds",
+    "preferences": "Preferences",
+    "history": "History",
+    "settings": "Settings",
+    "signOut": "Sign out"
+  },
+  "Landing": {
+    "title": "Watchit",
+    "subtitle": "Your personalized tech-watch digest, delivered daily.",
+    "signIn": "Sign in"
+  },
+  "Auth": {
+    "emailLabel": "Email address",
+    "sendLink": "Send sign-in link",
+    "checkInbox": "Check your inbox for a sign-in link."
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "noFeeds": "You don't have any feeds yet.",
+    "createFeed": "Create your first feed"
+  },
+  "Feeds": {
+    "title": "Feeds",
+    "newFeed": "New feed",
+    "name": "Name",
+    "topic": "Topic",
+    "active": "Active",
+    "inactive": "Inactive",
+    "preview": "Preview articles",
+    "create": "Create feed",
+    "delete": "Delete"
+  },
+  "Preferences": {
+    "title": "Your preferences",
+    "description": "Topics are scored from -1 (not interested) to 1 (very interested), based on your feedback.",
+    "noData": "No preference data yet. Interact with a few digest emails to get started."
+  },
+  "History": {
+    "title": "Interaction history",
+    "click": "Clicked",
+    "like": "Liked",
+    "dislike": "Disliked"
+  },
+  "Settings": {
+    "title": "Settings",
+    "timezone": "Timezone",
+    "digestHour": "Digest delivery hour",
+    "interfaceLanguage": "Interface language",
+    "contentLanguages": "Content languages",
+    "contentLanguagesHint": "Only show articles in these languages. Leave empty to include all languages.",
+    "save": "Save"
+  },
+  "Email": {
+    "subject": "Your {feedName} digest",
+    "intro": "Here are today's picks for \"{feedName}\":",
+    "readMore": "Read more",
+    "likeLabel": "Interested",
+    "dislikeLabel": "Not interested"
+  },
+  "Tracking": {
+    "thanksLike": "Thanks! We'll show you more like this.",
+    "thanksDislike": "Got it, we'll show you less like this.",
+    "addComment": "Want to tell us more? (optional)",
+    "commentPlaceholder": "What did or didn't you like about this?",
+    "submit": "Submit",
+    "skip": "Skip",
+    "expired": "This link has expired."
+  }
+}

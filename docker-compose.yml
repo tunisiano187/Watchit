@@ -1,0 +1,116 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: watchit
+      POSTGRES_USER: watchit
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U watchit"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  searxng:
+    image: searxng/searxng:latest
+    restart: unless-stopped
+    volumes:
+      - ./infra/searxng:/etc/searxng:rw
+    environment:
+      SEARXNG_BASE_URL: http://searxng:8080/
+
+  # Vane (formerly known as Perplexica) - AI search engine, used here as an
+  # internal-only API service. Not exposed publicly; Watchit talks to it
+  # over the Docker network at http://vane:3000.
+  vane:
+    image: itzcrazykns1337/vane:latest
+    restart: unless-stopped
+    environment:
+      SEARXNG_API_URL: http://searxng:8080
+    depends_on:
+      - searxng
+
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    volumes:
+      - ollama-data:/root/.ollama
+      - ./infra/ollama/pull-models.sh:/pull-models.sh:ro
+    environment:
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-mistral:7b}
+    entrypoint: ["/bin/sh", "/pull-models.sh"]
+    # The pull-models script starts the Ollama server, then pulls OLLAMA_MODEL on first boot.
+
+  watchit:
+    build:
+      context: ./apps/watchit
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://watchit:${POSTGRES_PASSWORD}@postgres:5432/watchit
+      REDIS_URL: redis://redis:6379
+      VANE_URL: http://vane:3000
+      OLLAMA_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-mistral:7b}
+      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      RESEND_API_KEY: ${RESEND_API_KEY}
+      FROM_EMAIL: ${FROM_EMAIL:-onboarding@resend.dev}
+      TRACKING_BASE_URL: ${TRACKING_BASE_URL:-http://localhost:3000}
+      INTERNAL_API_KEY: ${INTERNAL_API_KEY:-dev-internal-key}
+      ALLOW_SIGNUP: ${ALLOW_SIGNUP:-true}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      DEFAULT_LOCALE: en
+      SUPPORTED_LOCALES: en,fr
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      vane:
+        condition: service_started
+
+  worker:
+    build:
+      context: ./apps/watchit
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    command: ["node", "dist/workers/index.js"]
+    environment:
+      DATABASE_URL: postgresql://watchit:${POSTGRES_PASSWORD}@postgres:5432/watchit
+      REDIS_URL: redis://redis:6379
+      VANE_URL: http://vane:3000
+      OLLAMA_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-mistral:7b}
+      RESEND_API_KEY: ${RESEND_API_KEY}
+      FROM_EMAIL: ${FROM_EMAIL:-onboarding@resend.dev}
+      TRACKING_BASE_URL: ${TRACKING_BASE_URL:-http://localhost:3000}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      vane:
+        condition: service_started
+
+volumes:
+  postgres-data:
+  redis-data:
+  ollama-data:

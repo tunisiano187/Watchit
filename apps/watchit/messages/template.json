@@ -1,0 +1,72 @@
+{
+  "Nav": {
+    "dashboard": "",
+    "feeds": "",
+    "preferences": "",
+    "history": "",
+    "settings": "",
+    "signOut": ""
+  },
+  "Landing": {
+    "title": "",
+    "subtitle": "",
+    "signIn": ""
+  },
+  "Auth": {
+    "emailLabel": "",
+    "sendLink": "",
+    "checkInbox": ""
+  },
+  "Dashboard": {
+    "title": "",
+    "noFeeds": "",
+    "createFeed": ""
+  },
+  "Feeds": {
+    "title": "",
+    "newFeed": "",
+    "name": "",
+    "topic": "",
+    "active": "",
+    "inactive": "",
+    "preview": "",
+    "create": "",
+    "delete": ""
+  },
+  "Preferences": {
+    "title": "",
+    "description": "",
+    "noData": ""
+  },
+  "History": {
+    "title": "",
+    "click": "",
+    "like": "",
+    "dislike": ""
+  },
+  "Settings": {
+    "title": "",
+    "timezone": "",
+    "digestHour": "",
+    "interfaceLanguage": "",
+    "contentLanguages": "",
+    "contentLanguagesHint": "",
+    "save": ""
+  },
+  "Email": {
+    "subject": "",
+    "intro": "",
+    "readMore": "",
+    "likeLabel": "",
+    "dislikeLabel": ""
+  },
+  "Tracking": {
+    "thanksLike": "",
+    "thanksDislike": "",
+    "addComment": "",
+    "commentPlaceholder": "",
+    "submit": "",
+    "skip": "",
+    "expired": ""
+  }
+}
