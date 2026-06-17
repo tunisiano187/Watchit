@@ -67,7 +67,11 @@ services:
       DATABASE_URL: postgresql://watchit:${POSTGRES_PASSWORD}@postgres:5432/watchit
       REDIS_URL: redis://redis:6379
       VANE_URL: http://vane:3000
-      OLLAMA_URL: http://ollama:11434
+      VANE_CHAT_PROVIDER_ID: ${VANE_CHAT_PROVIDER_ID:-openai}
+      VANE_CHAT_MODEL_KEY: ${VANE_CHAT_MODEL_KEY:-gpt-4o-mini}
+      VANE_EMBEDDING_PROVIDER_ID: ${VANE_EMBEDDING_PROVIDER_ID:-openai}
+      VANE_EMBEDDING_MODEL_KEY: ${VANE_EMBEDDING_MODEL_KEY:-text-embedding-3-small}
+      OLLAMA_URL: ${OLLAMA_URL:-http://ollama:11434}
       OLLAMA_MODEL: ${OLLAMA_MODEL:-mistral:7b}
       NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
@@ -77,8 +81,8 @@ services:
       INTERNAL_API_KEY: ${INTERNAL_API_KEY:-dev-internal-key}
       ALLOW_SIGNUP: ${ALLOW_SIGNUP:-true}
       ADMIN_EMAIL: ${ADMIN_EMAIL:-}
-      DEFAULT_LOCALE: en
-      SUPPORTED_LOCALES: en,fr
+      DEFAULT_LOCALE: ${DEFAULT_LOCALE:-en}
+      SUPPORTED_LOCALES: ${SUPPORTED_LOCALES:-en,fr}
     depends_on:
       postgres:
         condition: service_healthy
@@ -97,11 +101,19 @@ services:
       DATABASE_URL: postgresql://watchit:${POSTGRES_PASSWORD}@postgres:5432/watchit
       REDIS_URL: redis://redis:6379
       VANE_URL: http://vane:3000
-      OLLAMA_URL: http://ollama:11434
+      VANE_CHAT_PROVIDER_ID: ${VANE_CHAT_PROVIDER_ID:-openai}
+      VANE_CHAT_MODEL_KEY: ${VANE_CHAT_MODEL_KEY:-gpt-4o-mini}
+      VANE_EMBEDDING_PROVIDER_ID: ${VANE_EMBEDDING_PROVIDER_ID:-openai}
+      VANE_EMBEDDING_MODEL_KEY: ${VANE_EMBEDDING_MODEL_KEY:-text-embedding-3-small}
+      OLLAMA_URL: ${OLLAMA_URL:-http://ollama:11434}
       OLLAMA_MODEL: ${OLLAMA_MODEL:-mistral:7b}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
       RESEND_API_KEY: ${RESEND_API_KEY}
       FROM_EMAIL: ${FROM_EMAIL:-onboarding@resend.dev}
       TRACKING_BASE_URL: ${TRACKING_BASE_URL:-http://localhost:3000}
+      INTERNAL_API_KEY: ${INTERNAL_API_KEY:-dev-internal-key}
+      ALLOW_SIGNUP: ${ALLOW_SIGNUP:-true}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
     depends_on:
       postgres:
         condition: service_healthy
