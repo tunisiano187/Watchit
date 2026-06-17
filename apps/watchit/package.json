@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",
+    "dockerode": "^4.0.2",
     "@react-email/components": "^1.0.12",
     "@react-email/render": "^2.0.6",
     "bullmq": "^5.34.0",
@@ -32,6 +33,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/dockerode": "^3.3.29",
     "@types/node": "^22.10.2",
     "@types/nodemailer": "^6.4.17",
     "@types/pg": "^8.11.10",

@@ -11,6 +11,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
   if (!user) redirect({ href: '/login', locale });
 
   const t = await getTranslations('Nav');
+  const currentUser = user!;
 
   return (
     <div>
@@ -28,6 +29,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
         <Link href="/preferences">{t('preferences')}</Link>
         <Link href="/history">{t('history')}</Link>
         <Link href="/settings">{t('settings')}</Link>
+        {currentUser.isAdmin && <Link href="/admin">{t('admin')}</Link>}
         <form
           action={async () => {
             'use server';
