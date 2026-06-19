@@ -94,6 +94,20 @@
     "checkForUpdates": "Vérifier",
     "changelog": "Nouveautés",
     "noRelease": "Aucune information de version disponible.",
-    "accessDenied": "Accès refusé — réservé aux administrateurs."
+    "accessDenied": "Accès refusé — réservé aux administrateurs.",
+    "queues": "Files d'attente",
+    "queueName": "File",
+    "waiting": "En attente",
+    "active": "En cours",
+    "completed": "Terminés",
+    "failed": "Échoués",
+    "delayed": "Différés",
+    "users": "Utilisateurs",
+    "email": "Email",
+    "adminRole": "Admin",
+    "makeAdmin": "Rendre admin",
+    "removeAdmin": "Retirer admin",
+    "noUsers": "Aucun utilisateur.",
+    "cannotChangeSelf": "Vous ne pouvez pas modifier votre propre statut admin."
   }
 }

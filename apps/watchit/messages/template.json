@@ -94,6 +94,20 @@
     "checkForUpdates": "",
     "changelog": "",
     "noRelease": "",
-    "accessDenied": ""
+    "accessDenied": "",
+    "queues": "",
+    "queueName": "",
+    "waiting": "",
+    "active": "",
+    "completed": "",
+    "failed": "",
+    "delayed": "",
+    "users": "",
+    "email": "",
+    "adminRole": "",
+    "makeAdmin": "",
+    "removeAdmin": "",
+    "noUsers": "",
+    "cannotChangeSelf": ""
   }
 }

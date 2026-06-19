@@ -27,10 +27,26 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: { strategy: 'database' },
   callbacks: {
     async signIn({ user }) {
-      if (ALLOW_SIGNUP || !user.email) return true;
+      if (!user.email) return false;
 
-      const [existing] = await db.select().from(schema.users).where(eq(schema.users.email, user.email));
-      return Boolean(existing) || user.email === process.env.ADMIN_EMAIL;
+      const isAdminEmail = user.email === process.env.ADMIN_EMAIL;
+
+      if (!ALLOW_SIGNUP && !isAdminEmail) {
+        const [existing] = await db.select().from(schema.users).where(eq(schema.users.email, user.email));
+        if (!existing) return false;
+      }
+
+      // Ensure the ADMIN_EMAIL account always has isAdmin = true.
+      // The DrizzleAdapter creates the user record before this callback fires, so the
+      // UPDATE is safe even on the very first sign-in.
+      if (isAdminEmail) {
+        await db
+          .update(schema.users)
+          .set({ isAdmin: true, updatedAt: new Date() })
+          .where(eq(schema.users.email, user.email));
+      }
+
+      return true;
     },
   },
 });

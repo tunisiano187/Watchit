@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveTrackingToken } from '@/lib/tracking/recordInteraction';
 import { getRawMessages } from '@/lib/i18n/getRawMessages';
+import { checkRateLimit } from '@/lib/rateLimit';
 
 function notedPage(token: string, message: string, addCommentLabel: string, skipLabel: string) {
   const html = `<!doctype html>
@@ -21,7 +22,13 @@ function expiredPage(message: string) {
   return new NextResponse(html, { status: 410, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
 }
 
-export async function GET(_request: NextRequest, { params }: { params: { token: string } }) {
+export async function GET(request: NextRequest, { params }: { params: { token: string } }) {
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() ?? 'unknown';
+  const allowed = await checkRateLimit(`track:${ip}`, 30, 60);
+  if (!allowed) {
+    return new NextResponse('Too many requests', { status: 429 });
+  }
+
   const resolved = await resolveTrackingToken(params.token);
 
   if (!resolved) {
