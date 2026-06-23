@@ -1,13 +1,19 @@
 #!/bin/sh
 set -e
 
+echo "[ollama] Starting Ollama server..."
 ollama serve &
-SERVER_PID=$!
+OLLAMA_PID=$!
 
-until ollama list >/dev/null 2>&1; do
-  sleep 1
-done
+# Wait for server to be ready
+echo "[ollama] Waiting for server..."
+sleep 5
 
-ollama pull "${OLLAMA_MODEL:-mistral:7b}"
+# Pull the model if specified
+if [ -n "$OLLAMA_MODEL" ]; then
+    echo "[ollama] Pulling model: $OLLAMA_MODEL"
+    ollama pull "$OLLAMA_MODEL"
+fi
 
-wait "$SERVER_PID"
+echo "[ollama] Keeping Ollama running..."
+wait $OLLAMA_PID

@@ -101,7 +101,7 @@ services:
       context: ./apps/watchit
       dockerfile: Dockerfile
     restart: unless-stopped
-    command: ["node", "dist/workers/index.js"]
+    command: ["node", "dist/workers/index.cjs"]
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
@@ -139,8 +139,7 @@ services:
     environment:
       REDIS_URL: ${REDIS_URL:-redis://redis:6379}
       COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME:-watchit}
-    entrypoint: ["/bin/sh", "-c"]
-    command: "apk add --no-cache git docker-cli redis && /bin/sh /updater-daemon.sh"
+    command: /bin/sh -c "apk add --no-cache git docker-cli redis && /bin/sh /updater-daemon.sh"
     depends_on:
       redis:
         condition: service_healthy
