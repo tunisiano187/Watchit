@@ -31,6 +31,9 @@
     "active": "Active",
     "inactive": "Inactive",
     "preview": "Preview articles",
+    "previewLoading": "Fetching preview…",
+    "backToEdit": "Edit topic",
+    "noPreviewResults": "No articles found for this topic. Try a different query.",
     "create": "Create feed",
     "delete": "Delete"
   },

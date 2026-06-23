@@ -31,6 +31,9 @@
     "active": "",
     "inactive": "",
     "preview": "",
+    "previewLoading": "",
+    "backToEdit": "",
+    "noPreviewResults": "",
     "create": "",
     "delete": ""
   },
