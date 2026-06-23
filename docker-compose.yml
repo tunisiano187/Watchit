@@ -29,6 +29,8 @@ services:
   searxng:
     image: searxng/searxng:latest
     restart: unless-stopped
+    ports:
+      - "8080:8080"
     volumes:
       - ./infra/searxng:/etc/searxng:rw
     environment:
