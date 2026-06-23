@@ -94,6 +94,20 @@
     "checkForUpdates": "Check",
     "changelog": "What's new",
     "noRelease": "No release information available.",
-    "accessDenied": "Access denied — admin only."
+    "accessDenied": "Access denied — admin only.",
+    "queues": "Queues",
+    "queueName": "Queue",
+    "waiting": "Waiting",
+    "active": "Active",
+    "completed": "Completed",
+    "failed": "Failed",
+    "delayed": "Delayed",
+    "users": "Users",
+    "email": "Email",
+    "adminRole": "Admin",
+    "makeAdmin": "Make admin",
+    "removeAdmin": "Remove admin",
+    "noUsers": "No users yet.",
+    "cannotChangeSelf": "You cannot change your own admin status."
   }
 }
