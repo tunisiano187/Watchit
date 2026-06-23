@@ -31,6 +31,9 @@
     "active": "Actif",
     "inactive": "Inactif",
     "preview": "Aperçu des articles",
+    "previewLoading": "Chargement de l'aperçu…",
+    "backToEdit": "Modifier le sujet",
+    "noPreviewResults": "Aucun article trouvé pour ce sujet. Essayez une autre requête.",
     "create": "Créer le flux",
     "delete": "Supprimer"
   },
