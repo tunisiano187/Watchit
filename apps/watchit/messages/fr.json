@@ -111,6 +111,7 @@
     "makeAdmin": "Rendre admin",
     "removeAdmin": "Retirer admin",
     "noUsers": "Aucun utilisateur.",
-    "cannotChangeSelf": "Vous ne pouvez pas modifier votre propre statut admin."
+    "cannotChangeSelf": "Vous ne pouvez pas modifier votre propre statut admin.",
+    "analytics": "Analytiques"
   }
 }

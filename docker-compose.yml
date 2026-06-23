@@ -4,6 +4,7 @@ services:
     restart: unless-stopped
     volumes:
       - postgres-data:/var/lib/postgresql/data
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     environment:
       POSTGRES_DB: watchit
       POSTGRES_USER: watchit
@@ -88,6 +89,8 @@ services:
       COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME:-watchit}
       GITHUB_REPO: ${GITHUB_REPO:-tunisiano187/Watchit}
       GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID:-}
+      NEXT_PUBLIC_UMAMI_URL: ${NEXT_PUBLIC_UMAMI_URL:-}
     depends_on:
       postgres:
         condition: service_healthy
@@ -143,6 +146,24 @@ services:
     depends_on:
       redis:
         condition: service_healthy
+
+  # ── Analytics (opt-in) ──────────────────────────────────────────────────────
+  # Start with: docker compose --profile analytics up -d
+  # Then visit http://host:3002, log in (admin / umami), add your site,
+  # copy the Website ID, and set NEXT_PUBLIC_UMAMI_WEBSITE_ID in .env.
+  umami:
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    restart: unless-stopped
+    ports:
+      - "${UMAMI_PORT:-3002}:3000"
+    environment:
+      DATABASE_URL: postgresql://watchit:${POSTGRES_PASSWORD}@postgres:5432/umami
+      APP_SECRET: ${UMAMI_SECRET:-change-me-please}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    profiles:
+      - analytics
 
 volumes:
   postgres-data:

@@ -188,12 +188,22 @@ export default function AdminDashboard({
 
   return (
     <div>
-      <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid #e5e5e5', marginBottom: 24 }}>
+      <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid #e5e5e5', marginBottom: 24, alignItems: 'center' }}>
         {(['containers', 'queues', 'update', 'users'] as Tab[]).map((t) => (
           <button key={t} style={tabStyle(tab === t)} onClick={() => setTab(t)}>
             {labels[t]}
           </button>
         ))}
+        {labels.analyticsUrl && (
+          <a
+            href={labels.analyticsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ marginLeft: 'auto', padding: '6px 14px', fontSize: 13, border: '1px solid #d1d5db', borderRadius: 6, textDecoration: 'none', color: '#374151', background: '#f9fafb' }}
+          >
+            {labels.analytics} ↗
+          </a>
+        )}
       </div>
 
       {/* ── Containers ──────────────────────────────────────────────────── */}

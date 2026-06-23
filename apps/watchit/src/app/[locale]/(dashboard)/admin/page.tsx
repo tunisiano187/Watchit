@@ -85,6 +85,8 @@ export default async function AdminPage() {
     removeAdmin: t('removeAdmin'),
     noUsers: t('noUsers'),
     cannotChangeSelf: t('cannotChangeSelf'),
+    analytics: t('analytics'),
+    analyticsUrl: process.env.NEXT_PUBLIC_UMAMI_URL ?? '',
   };
 
   return (
