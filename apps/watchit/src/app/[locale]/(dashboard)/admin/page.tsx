@@ -3,15 +3,11 @@ import { getTranslations } from 'next-intl/server';
 import { getCurrentUser } from '@/lib/auth/getCurrentUser';
 import { db } from '@/lib/db/client';
 import { users } from '@/lib/db/schema';
+import { listServices } from '@/lib/docker/services';
 import { digestQueue, preferenceQueue, cleanupQueue } from '@/lib/queue/jobs';
 import { checkForUpdates } from '@/lib/updater/checker';
 import { getUpdateStatus } from '@/lib/updater/trigger';
 import AdminDashboard from './AdminDashboard';
-
-// Stub for docker services - Docker management disabled in this build
-async function listServices() {
-  return [];
-}
 
 export default async function AdminPage() {
   const user = await getCurrentUser();
@@ -23,7 +19,8 @@ export default async function AdminPage() {
 
   const queuesRaw = [digestQueue, preferenceQueue, cleanupQueue];
 
-  const [versionStatus, updateStatus, queueStats, userRows] = await Promise.all([
+  const [services, versionStatus, updateStatus, queueStats, userRows] = await Promise.all([
+    listServices().catch(() => []),
     checkForUpdates(),
     getUpdateStatus(),
     Promise.all(
@@ -95,7 +92,7 @@ export default async function AdminPage() {
       <h1 style={{ marginTop: 0, marginBottom: 24, fontSize: 22, fontWeight: 700 }}>{t('title')}</h1>
       <AdminDashboard
         currentUserId={user.id}
-        initialServices={[]}
+        initialServices={services}
         initialVersionStatus={versionStatus}
         initialUpdateStatus={updateStatus}
         initialQueues={queueStats}

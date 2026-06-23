@@ -1,14 +1,14 @@
 FROM node:22-alpine AS base
 WORKDIR /app
-RUN npm install -g npm
+RUN npm install -g pnpm
 
 FROM base AS deps
-COPY package.json package-lock.json* ./
-RUN npm install
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 FROM deps AS build
 COPY . .
-RUN npm run build
+RUN pnpm run build
 
 FROM base AS runtime
 ENV NODE_ENV=production
@@ -21,4 +21,4 @@ COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/drizzle ./drizzle
 
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]
