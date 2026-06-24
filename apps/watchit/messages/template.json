@@ -111,6 +111,7 @@
     "makeAdmin": "",
     "removeAdmin": "",
     "noUsers": "",
-    "cannotChangeSelf": ""
+    "cannotChangeSelf": "",
+    "analytics": ""
   }
 }

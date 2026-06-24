@@ -111,6 +111,7 @@
     "makeAdmin": "Make admin",
     "removeAdmin": "Remove admin",
     "noUsers": "No users yet.",
-    "cannotChangeSelf": "You cannot change your own admin status."
+    "cannotChangeSelf": "You cannot change your own admin status.",
+    "analytics": "Analytics"
   }
 }
